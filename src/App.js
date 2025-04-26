@@ -11,7 +11,7 @@ function App() {
 
   return (
     <Layout style={{ padding: '20px', marginTop: '20px', backgroundColor: '#fff' }}>
-      <Title level={1}>Lista de Usuarios</Title>
+      <Title level={1}>Lista de Usuarios - Usando Surge y Git Actions</Title>
 
       {/* Formulario para añadir usuario */}
       <Form layout="inline" onFinish={handleAddUser} style={{ marginBottom: '20px' }}>
