@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Layout, Typography, Input, Form, List } from 'antd';
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useUsers } from './useUsers'; // Importamos el nuevo hook
 
 const { Title } = Typography;
@@ -24,6 +24,9 @@ function App() {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" icon={<PlusOutlined />} />
+          <Button type="primary" htmlType="submit" icon={<PlusOutlined />} />
+          <Button type="primary" htmlType="submit" icon={<PlusOutlined />} />
+          <Button type="primary" htmlType="submit" icon={<PlusOutlined />} />
         </Form.Item>
       </Form>
 
@@ -39,9 +42,14 @@ function App() {
                 danger 
                 icon={<DeleteOutlined />} 
                 onClick={() => handleDeleteUser(user)}
+              />,
+              <Button 
+                type="link" 
+                danger 
+                icon={<EditOutlined />} 
+                onClick={() => handleDeleteUser(user)}
               />
-            ]}
-          >
+            ]}>
             {user}
           </List.Item>
         )}
