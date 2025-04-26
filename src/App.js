@@ -1,52 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Layout, Typography, Input, Form, List, message } from 'antd';
+import React from 'react';
+import { Button, Layout, Typography, Input, Form, List } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
-import { getUsers, addUser, deleteUser } from './api/userService'; // Importamos funciones
+import { useUsers } from './useUsers'; // Importamos el nuevo hook
 
 const { Title } = Typography;
 
-function App(props) {
-  const [users, setUsers] = useState([]);
-  const [newUser, setNewUser] = useState('');
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
-    try {
-      const response = await getUsers();
-      setUsers(response.data);
-    } catch (error) {
-      console.error('Error al cargar usuarios', error);
-      message.error('Error al cargar usuarios');
-    }
-  };
-
-  const handleAddUser = async () => {
-    if (newUser.trim() === '') return;
-
-    try {
-      await addUser(newUser.trim());
-      setNewUser('');
-      fetchUsers(); // Recarga la lista
-      message.success('Usuario añadido correctamente');
-    } catch (error) {
-      console.error('Error al añadir usuario', error);
-      message.error('No se pudo añadir el usuario');
-    }
-  };
-
-  const handleDeleteUser = async (name) => {
-    try {
-      await deleteUser(name);
-      fetchUsers(); // Recarga la lista
-      message.success('Usuario eliminado correctamente');
-    } catch (error) {
-      console.error('Error al eliminar usuario', error);
-      message.error('No se pudo eliminar el usuario');
-    }
-  };
+function App() {
+  const { users, newUser, setNewUser, handleAddUser, handleDeleteUser } = useUsers();
 
   return (
     <Layout style={{ padding: '20px', marginTop: '20px', backgroundColor: '#fff' }}>
