@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://ip172-18-0-15-d06ghaqim2rg00dab9v0-4000.direct.labs.play-with-docker.com/users'; // URL del backend
+const API_URL = 'https://api-react-1.itielsoluciones.com/users'; // URL del backend
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
