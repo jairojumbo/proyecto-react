@@ -26,7 +26,8 @@ app.post('/users', (req, res) => {
   res.status(201).json({ message: 'Usuario añadido', users });
 });
 
-// Eliminar usuario por nombre
+
+// Eliminar usuario
 app.delete('/users/:name', (req, res) => {
   const { name } = req.params;
   const initialLength = users.length;
@@ -37,6 +38,25 @@ app.delete('/users/:name', (req, res) => {
   }
   
   res.json({ message: 'Usuario eliminado', users });
+});
+
+// Actualizar usuario
+app.put('/users/:name', (req, res) => {
+  const { name } = req.params;
+  const { name: newName } = req.body;
+
+  if (!newName) {
+    return res.status(400).json({ error: 'El nuevo nombre es requerido' });
+  }
+
+  const userIndex = users.findIndex(user => user === name);
+
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'Usuario no encontrado' });
+  }
+
+  users[userIndex] = newName;
+  res.json({ message: 'Usuario actualizado', users });
 });
 
 // Iniciar servidor

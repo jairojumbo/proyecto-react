@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-const API_URL = 'https://api-react-1.itielsoluciones.com/users'; // URL del backend
+//const API_URL = 'http://localhost:4000/users';
+const API_URL = 'https://api-react-1.itielsoluciones.com/users';
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*', // Esto solo es útil si el servidor responde bien
+    'Access-Control-Allow-Origin': '*',
   },
-  withCredentials: false, // Pon 'true' si necesitas enviar cookies o credenciales
+  withCredentials: false,
 });
 
 // Obtener todos los usuarios
@@ -24,4 +25,9 @@ export const addUser = (name) => {
 // Eliminar un usuario
 export const deleteUser = (name) => {
   return axiosInstance.delete(`/${name}`);
+};
+
+// Actualizar un usuario
+export const updateUser = (oldName, newName) => {
+  return axiosInstance.put(`/${oldName}`, { name: newName });
 };
