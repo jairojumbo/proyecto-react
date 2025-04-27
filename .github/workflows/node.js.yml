@@ -31,4 +31,4 @@ jobs:
     - name: Intalar Surge
       run: npm install --global surge
     - name: Deploy to Surge
-      run: surge ./build ${{vars.URL}} --token ${{secrets.KEY}}
+      run: surge ./build ${{vars.SURGE_URL}} --token ${{secrets.SURGE_KEY}}
